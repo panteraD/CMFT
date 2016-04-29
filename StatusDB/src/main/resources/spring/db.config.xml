@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+              <property name="location" value="/WEB-INF/classes/properties/app.properties"/>
+              <!--compile tests with this-->
+              <!--<property name="location" value="/properties/app.properties"/>-->
+       </bean>
+
+       <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+              <property name="driverClassName" value="${hibernate.connection.driver_class}"/>
+              <property name="url" value="${hibernate.connection.url}"/>
+              <property name="username" value="${hibernate.connection.username}"/>
+              <property name="password" value="${hibernate.connection.password}"/>
+       </bean>
+
+       <bean id="hibernate4SessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+              <property name="dataSource" ref="dataSource"/>
+              <property name="annotatedClasses">
+                     <list>
+                            <value>ru.kir.status.domain.User</value>
+                            <value>ru.kir.status.domain.Param</value>
+                            <value>ru.kir.status.domain.Attribute</value>
+                            <value>ru.kir.status.domain.Role</value>
+                     </list>
+              </property>
+              <property name="hibernateProperties">
+                     <props>
+                            <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                            <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                            <prop key="hibernate.default_schema">${hibernate.default_schema}</prop>
+                     </props>
+              </property>
+       </bean>
+
+       <bean id="userDao" class="ru.kir.status.dao.UserDaoImpl">
+              <property name="sessionFactory" ref="hibernate4SessionFactory"/>
+       </bean>
+
+       <bean id="userService" class="ru.kir.status.service.UserServiceImpl">
+              <property name="userDao" ref="userDao"/>
+              <property name="paramDao" ref="paramDao"/>
+       </bean>
+
+       <bean id="paramDao" class="ru.kir.status.dao.ParamDaoImpl">
+              <property name="sessionFactory" ref="hibernate4SessionFactory"/>
+              <property name="userDao" ref="userDao"/>
+       </bean>
+
+       <bean id="paramService" class="ru.kir.status.service.ParamServiceImpl">
+              <property name="paramDao" ref="paramDao"/>
+       </bean>
+
+</beans>

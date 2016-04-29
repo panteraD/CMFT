@@ -1,0 +1,118 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:gwt='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'
+             xmlns:i='urn:import:com.vaadin.polymer.iron.widget'>
+
+    <ui:style>
+        .content {
+            padding: 15px;
+        }
+
+        .paper-scroll-header-panel {
+            height: 100%;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .toolbar {
+            height: 60px;
+            font-size: 16px;
+            line-height: 60px;
+            padding: 0 10px;
+            color: white;
+            margin-top: 20px;
+            background-color: green;
+        }
+
+    </ui:style>
+
+    <gwt:HTMLPanel addStyleNames="header-panel-sample">
+        <!--Tip: In order to make Polymer process your style block add the is="custom-style" attribute.-->
+        <style is='custom-style'>
+            .header-panel-sample {
+            padding: 40px;
+            <!--Important: The paper-scroll-header-panel will not display if its parent does not have a height.-->
+            height:100%;
+            }
+
+            .header-panel-sample paper-header-panel {
+            float: left;
+            width: auto;
+            height: 240px ;
+            margin: 12px;
+            @apply(--shadow-elevation-2dp);
+            }
+
+            .header-panel-sample .paper-header {
+            height: 60px;
+            font-size: 16px;
+            line-height: 60px;
+            padding: 0 10px;
+            color: white;
+            transition: height 0.2s;
+            }
+
+
+            .header-panel-sample .content {
+            height: auto;
+            }
+
+            .header-panel-sample .cover {
+            margin: 60px;
+            }
+
+        </style>
+        <!--<gwt:DockLayoutPanel>-->
+        <!--<gwt:north size="300">-->
+        <!--<p:PaperScrollHeaderPanel addStyleNames="{style.paper-scroll-header-panel}" class="fit">-->
+        <p:PaperToolbar title="PaperToolbar title" style="{style.toolbar}">
+            <span class="title">SportSocialNetwork</span>
+            <p:PaperButton ui:field="reloadUserButton" raised="true">reload</p:PaperButton>
+            <p:PaperButton ui:field="getUsersButton" raised="true">find local players</p:PaperButton>
+            <p:PaperButton ui:field="logoutButton" raised="true">logout</p:PaperButton>
+        </p:PaperToolbar>
+        <!--</gwt:north>-->
+
+        <!--<gwt:west size="500">-->
+        <!--<gwt:HTMLPanel>-->
+        <gwt:Label ui:field="label"></gwt:Label>
+
+        <p:PaperInput label="Starting time" ui:field="beginInput"
+                      pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" autoValidate="true"
+                      errorMessage="error" required="true">
+        </p:PaperInput>
+        <p:PaperInput label="Ending time" ui:field="endInput"
+                      pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" autoValidate="true"
+                      errorMessage="error" required="true">
+        </p:PaperInput>
+        <p:PaperInput label="status type" ui:field="statusInput"></p:PaperInput>
+        <p:PaperInput label="address" ui:field="addressInput"></p:PaperInput>
+        <p:PaperInput label="test" ui:field="testInput"></p:PaperInput>
+
+        <p:PaperButton ui:field="submitButton" raised="true" width="auto">submit</p:PaperButton>
+        <!--</gwt:HTMLPanel>-->
+        <!--</gwt:west>-->
+
+        <!--<gwt:center size="500">-->
+        <!--<gwt:HTMLPanel>-->
+        <p:PaperHeaderPanel mode="waterfall">
+            <div class="paper-header" style="background-color:green">List of local players</div>
+
+            <div class="content">
+                <gwt:HTMLPanel ui:field="content" addStyleNames="{style.content}"/>
+            </div>
+        </p:PaperHeaderPanel>
+
+        <p:PaperToast ui:field="usersFoundToast"></p:PaperToast>
+        <!--</gwt:HTMLPanel>-->
+
+        <!--</gwt:center>-->
+        <!--</gwt:DockLayoutPanel>-->
+    </gwt:HTMLPanel>
+</ui:UiBinder>
+
+
+
+

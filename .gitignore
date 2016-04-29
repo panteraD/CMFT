@@ -1,0 +1,8 @@
+.idea/*
+!.idea/runConfigurations/
+*.iml
+*.jar
+*.backup
+target/*
+scripts/dump.tar.gz
+RegisterServer/src/main/resources/hibernate/hibernate.properties

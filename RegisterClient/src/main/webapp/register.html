@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RegisterPage</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <script src="RegisterClient/bower_components/webcomponentsjs/webcomponents.js"></script>
+    <script type="text/javascript" src="RegisterClient/RegisterClient.nocache.js"></script>
+</head>
+
+<body>
+<form name="register_form" action="/auth/saving/add" method="post">
+
+    <table>
+        <tr>
+            <td>name</td>
+            <td><input type="text" name="name"></td>
+        </tr>
+        <tr>
+            <td>surname</td>
+            <td><input type="text" name="surname"></td>
+        </tr>
+
+        <tr>
+            <td>login</td>
+            <td><input type="text" name="login"></td>
+        </tr>
+        <td>eMail</td>
+        <td><input type="text" name="eMail"></td>
+        <tr>
+            <td>address</td>
+            <td><input type="text" name="address"></td>
+        </tr>
+        <tr>
+            <td>image path</td>
+            <td><input type="text" name="path"></td>
+        </tr>
+
+        <tr>
+            <td>birthday</td>
+            <td><input type="text" name="birthday"></td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td><input type="text" name="password"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="input" value="Ok"></td>
+        </tr>
+    </table>
+
+
+</form>
+
+<div id="polymer"></div>
+
+</body>
+</html>

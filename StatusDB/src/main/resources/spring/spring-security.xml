@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <security:http auto-config="true" use-expressions="true">
+        <security:intercept-url pattern="/statusClient/**" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/redirect" access="hasRole('ROLE_USER')"/>
+        <security:form-login
+            login-page="/login"
+            default-target-url="/redirect"
+            authentication-failure-url="/login?error"
+            username-parameter="username"
+            password-parameter="password"/>
+
+        <security:logout logout-url="/login?logout"/>
+
+        <!--//TODO: implement csrf token submitting-->
+        <security:csrf disabled="true"></security:csrf>
+        
+    </security:http>
+
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <!--TODO check this-->
+            <!--<security:password-encoder ref="encoder"/>-->
+            <security:jdbc-user-service data-source-ref="dataSource"
+                      users-by-username-query="SELECT login, password, enabled FROM reg.people WHERE login=?"
+                      authorities-by-username-query="SELECT login, roles.role FROM reg.people, reg.roles WHERE login=?"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <!--Hashing service-->
+    <bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <constructor-arg name="strength" value="10"/>
+    </bean>
+
+    <bean id="resolver" class="org.springframework.security.authentication.AuthenticationTrustResolverImpl"/>
+
+</beans>

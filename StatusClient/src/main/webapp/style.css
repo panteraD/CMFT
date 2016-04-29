@@ -1,0 +1,27 @@
+/*body{*/
+    /*background-color: lightgreen;*/
+/*}*/
+
+/*h1{*/
+    /*font-family: Georgia;*/
+    /*font-size: large;*/
+/*}*/
+
+#form {
+    /*position: absolute;*/
+    /*background-color: whitesmoke;*/
+    /*margin-outside: 20%;*/
+    /*top: 25%;*/
+    /*bottom: 25%;*/
+    /*left: 50%;*/
+    /*margin-top: -50px;*/
+    /*margin-left: -50px;*/
+    height:100%;
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
